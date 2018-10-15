@@ -10,7 +10,8 @@ const RIGHT_ARROW = 39 // use e.which!
 const ROCKS = []
 const START = document.getElementById('start')
 
-var gameInterval = null
+var score = 0;
+var gameInterval = true;
 
 /**
  * Be aware of what's above this line,
@@ -43,7 +44,7 @@ function createRock(x) {
   rock.style.left = `${x}px`
 
   // Hmmm, why would we have used `var` here?
-  var top = 0
+  var top = -20
 
   rock.style.top = top
 
@@ -65,31 +66,27 @@ function createRock(x) {
      * Otherwise, if the rock hasn't reached the bottom of
      * the GAME, we want to move it again.
      */
+    var speed = 1;
     function step() {
-      rock.style.top = `${top += 2}px`
-      if (top < GAME_HEIGHT-30) {
+      rock.style.top = `${top += speed}px`
+      if (top < GAME_HEIGHT) {
         if (checkCollision(rock)){
-          endGame();
+          //endGame();
         }
+        speed += 0.1
         window.requestAnimationFrame(step)
       }
-      else{rock.remove();}
+      else{
+        delete rock;
+        rock.remove();
+      }
     }
 
     window.requestAnimationFrame(step)
    }
-    /**
-     * But if the rock *has* reached the bottom of the GAME,
-     * we should remove the rock from the DOM
-     */
-
   ROCKS.push(rock)
-  // We should kick of the animation of the rock around here
   moveRock();
-  // Add the rock to ROCKS so that we can remove all rocks
-  // when there's a collision
 
-  // Finally, return the rock element you've created
   return rock
 }
 
@@ -100,13 +97,13 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
-  clearInterval(gameInterval);
+  gameInterval = false;
+  window.removeEventListener('keydown', moveDodger);
   for (let i=0; i<ROCKS.length; i++){
     ROCKS[i].remove();
     delete ROCKS[i];
   }
-  window.removeEventListener('keydown', moveDodger);
-  setTimeout(function(){alert("YOU LOSE!");},30);
+  setTimeout(function(){alert(`YOU LOST WITH A SCORE OF ${score}`);},30);
 }
 
 function moveDodger(e) {
@@ -126,7 +123,7 @@ function moveDodgerLeft() {
   var left = parseInt(leftNumbers, 10);
 
   if (left > 0) {
-    DODGER.style.left = `${left - 4}px`;
+    DODGER.style.left = `${left - 12}px`;
   }
 }
 
@@ -135,7 +132,7 @@ function moveDodgerRight() {
   var left = parseInt(leftNumbers, 10);
 
   if (left < 360) {
-    DODGER.style.left = `${left + 4}px`;
+    DODGER.style.left = `${left + 12}px`;
   }
 }
 
@@ -152,7 +149,17 @@ function start() {
 
   START.style.display = 'none'
 
-  gameInterval = setInterval(function() {
-    createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)))
-  }, Math.floor(Math.random()*500 + 750))
+
+  function repeat() {
+    createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)));
+    score++;
+    document.getElementById('score').innerHTML = `Score: ${score}`;
+    setTimeout(function() {
+      if (gameInterval) {
+        repeat();
+      }
+    }, 1);
+  }
+  repeat();
+
 }

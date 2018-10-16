@@ -71,7 +71,7 @@ function createRock(x) {
       rock.style.top = `${top += speed}px`
       if (top < GAME_HEIGHT) {
         if (checkCollision(rock)){
-          //endGame();
+          endGame();
         }
         speed += 0.1
         window.requestAnimationFrame(step)
@@ -161,7 +161,7 @@ function start() {
       if (gameInterval) {
         repeat();
       }
-    }, Math.max(Math.floor(1200-Math.log10(score+1)*600),0) + Math.floor(Math.random()*600 - Math.atan(score/250)*400));
+    }, Math.max(Math.floor(1200-Math.log10(score+1)*600)) + Math.floor(Math.random()*200));
   }
   repeat();
 

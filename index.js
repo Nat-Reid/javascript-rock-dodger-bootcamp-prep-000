@@ -162,7 +162,7 @@ function start() {
       if (gameInterval) {
         repeat();
       }
-    }, 10000);//Math.max(Math.floor(1200-Math.log10(score+1)*600),0) + Math.floor(Math.random()*300));
+    }, Math.max(Math.floor(1200-Math.log10(score+1)*600),0) + Math.floor(Math.random()*300));
   }
   repeat();
 

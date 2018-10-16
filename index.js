@@ -79,7 +79,9 @@ function createRock(x) {
       else{
         delete rock;
         rock.remove();
+        if(gameInterval){
         score++;
+        }
         document.getElementById('score').innerHTML = `Score: ${score}`;
       }
     }

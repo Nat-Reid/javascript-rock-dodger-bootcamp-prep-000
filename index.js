@@ -150,7 +150,7 @@ function positionToInteger(p) {
 
 function start() {
   window.addEventListener('keydown', moveDodger);
-  document.querySelector('#game p')
+  document.querySelector('#game p').id = 'score';
 
   START.style.display = 'none'
 

@@ -77,9 +77,10 @@ function createRock(x) {
         window.requestAnimationFrame(step)
       }
       else{
-        score++;
         delete rock;
         rock.remove();
+        score++;
+        document.getElementById('score').innerHTML = `Score: ${score}`;
       }
     }
 
@@ -153,12 +154,11 @@ function start() {
 
   function repeat() {
     createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)));
-    document.getElementById('score').innerHTML = `Score: ${score}`;
     setTimeout(function() {
       if (gameInterval) {
         repeat();
       }
-    }, Math.max(Math.floor(1200-Math.log10(score+1)*600)) + Math.floor(Math.random()*200));
+    }, Math.max(Math.floor(1200-Math.log10(score)*600)) + Math.floor(Math.random()*200));
   }
   repeat();
 

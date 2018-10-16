@@ -108,7 +108,6 @@ function endGame() {
     delete ROCKS[i];
   }
   setTimeout(function(){alert(`YOU LOST WITH A SCORE OF ${score}`);},30);
-  document.getElementById('score').id = '';
 }
 
 function moveDodger(e) {

@@ -73,7 +73,7 @@ function createRock(x) {
         if (checkCollision(rock)){
           endGame();
         }
-        speed += 0.3
+        speed += 0.01
         window.requestAnimationFrame(step)
       }
       else{

@@ -72,7 +72,7 @@ function createRock(x) {
       if (top < GAME_HEIGHT) {
         if (checkCollision(rock)){
           //endGame();
-          speed = speed * (-1);
+          speed = speed * (-1) + 0.2;
         }
         speed += 0.03
         window.requestAnimationFrame(step)

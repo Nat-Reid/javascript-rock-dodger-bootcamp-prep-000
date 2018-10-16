@@ -77,6 +77,7 @@ function createRock(x) {
         window.requestAnimationFrame(step)
       }
       else{
+        score++;
         delete rock;
         rock.remove();
       }
@@ -152,7 +153,6 @@ function start() {
 
   function repeat() {
     createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)));
-    score++;
     document.getElementById('score').innerHTML = `Score: ${score}`;
     setTimeout(function() {
       if (gameInterval) {

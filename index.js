@@ -158,7 +158,7 @@ function start() {
       if (gameInterval) {
         repeat();
       }
-    }, Math.max(Math.floor(1200-Math.log10(score)*800)) + Math.floor(Math.random()*200));
+    }, Math.max(Math.floor(1200-Math.log10(score)*600)) + Math.floor(Math.random()*200));
   }
   repeat();
 

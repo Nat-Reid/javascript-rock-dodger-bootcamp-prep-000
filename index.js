@@ -74,7 +74,7 @@ function createRock(x) {
           //endGame();
           speed = Math.min(speed * (-0.95),-2);
         }
-        speed += 0.0005
+        speed += 1
         window.requestAnimationFrame(step)
       }
       else{

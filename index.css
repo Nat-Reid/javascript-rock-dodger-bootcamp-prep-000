@@ -23,14 +23,11 @@
   top: 4rem;
 }
 #score {
-  color: white;
+  color: rainbow;
   font-size: 1.5rem;
   position: relative;
   text-decoration: none;
   top: 1rem;
-}
-#pre{
-  color: rainbow;
 }
 
 .rock {

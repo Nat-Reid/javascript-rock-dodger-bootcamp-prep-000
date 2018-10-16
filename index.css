@@ -47,6 +47,7 @@
   position: absolute;
   top: 0;
   width: 9px;
+  background-color: none;
 }
 
 .rock:after {
@@ -59,4 +60,5 @@
   left: 0;
   position: absolute;
   width: 9px;
+  background-color: none;
 }
